@@ -19,7 +19,7 @@ import frc.robot.subsystems.PhotonVision;
 // Lots of important stuff here! This is where the commands and subsystems come together
 public class RobotContainer {
   double turn = 0.0;
-  int VISION_TURN_kP = 0.5;
+  double VISION_TURN_kP = 0.5;
   PhotonVision m_vision = new PhotonVision();
   
   // New Command Xbox Controller (Command is for Command Based Stuff)
