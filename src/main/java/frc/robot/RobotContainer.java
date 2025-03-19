@@ -10,7 +10,6 @@ import frc.robot.commands.TankDriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.PhotonVision;
@@ -18,7 +17,6 @@ import frc.robot.subsystems.PhotonVision;
 
 // Lots of important stuff here! This is where the commands and subsystems come together
 public class RobotContainer {
-  double turn = 0.0;
   double VISION_TURN_kP = 0.5;
   PhotonVision m_vision = new PhotonVision();
   
@@ -46,14 +44,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new JoystickButton(m_driverController.getHID(), DriverConstants.k_A)
       .onTrue(
-          new InstantCommand(() -> m_driveSubsystem.arcadeDrive(m_driverController, 0, turn), m_driveSubsystem)
+          new InstantCommand(() -> m_driveSubsystem.arcadeDrive(m_driverController, 0, m_vision.getMinDistance()>1 ? -1.0 * m_vision.camera.targetYaw * VISION_TURN_kP : 0.0), m_driveSubsystem)
         );
-    if (m_vision.getMinDistance()>1) {
-      turn = -1.0 * m_vision.camera.targetYaw * VISION_TURN_kP;
-    }
-    else{
-      turn=0.0;
-    }
   }
 
   // This is where you would put the PathPlanner stuff!
