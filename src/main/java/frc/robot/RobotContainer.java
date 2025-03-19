@@ -44,7 +44,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     new JoystickButton(m_driverController.getHID(), DriverConstants.k_A)
       .onTrue(
-          new InstantCommand(() -> m_driveSubsystem.arcadeDrive(m_driverController, 0, m_vision.getMinDistance()>1 ? -1.0 * m_vision.camera.targetYaw * VISION_TURN_kP : 0.0), m_driveSubsystem)
+          new InstantCommand(() -> m_driveSubsystem.arcadeDrive(m_driverController, 0, m_vision.getMinDistance()<1 ? -1.0 * m_vision.camera.targetYaw * VISION_TURN_kP : 0.0), m_driveSubsystem)
         );
   }
 
