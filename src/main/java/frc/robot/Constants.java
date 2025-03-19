@@ -7,7 +7,7 @@ public class Constants {
   // Drive stuff
   public class DriverConstants {
     public static final int k_driverControllerPort = 0;
-
+    public static final int k_A = XboxController.Button.kA.value;
     public static final int k_startButtonID = XboxController.Button.kStart.value;
   }  
   
